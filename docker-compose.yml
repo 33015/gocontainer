@@ -1,0 +1,21 @@
+version: "3.9"  # optional since v1.27.0
+services:
+ web:
+   image: godev
+   ports:
+     - "2222:22"
+   volumes:
+     - mygo:/home/markus/go
+   depends_on:
+     - mysql
+   tty: true
+ mysql:
+   image: mysql
+   restart: always
+   environment:
+     - MYSQL_ROOT_PASSWORD=my-secret-pw
+ adminer:
+   image: adminer
+   restart: always
+   ports:
+     - 8080:8080
